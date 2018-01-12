@@ -1,5 +1,6 @@
 let AWS = require('aws-sdk');
-exports.handler = function(event, context, callback){
+const s3 = new AWS.S3();
+exports.handler = function (event, context, callback) {
 
     console.log('Received event:', JSON.stringify(event, null, 2));
     console.log('value1 =', event.key1);
@@ -13,7 +14,7 @@ exports.handler = function(event, context, callback){
     console.log('clientContext =', context.clientContext);
     if (typeof context.identity !== 'undefined') {
         console.log('Cognito identity ID =', context.identity.cognitoIdentityId);
-    }    
+    }
     callback(null, event.key1); // Echo back the first key value
     // or
     // callback("some error type"); 
